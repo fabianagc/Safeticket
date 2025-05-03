@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Confirmar Eliminación</h4>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert alert-danger">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                        <p class="lead">¿Estás seguro que deseas eliminar al usuario "{{ object.username }}"?</p>
+                        <form method="post">
+                        {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <a href="{% url 'ListarUsuarios' %}" class="btn btn-secondary">Cancelar</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

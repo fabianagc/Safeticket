@@ -1,0 +1,2 @@
+Celeste: #0cacdf
+Negro: #000000

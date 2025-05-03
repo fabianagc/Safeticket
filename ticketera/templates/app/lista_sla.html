@@ -1,0 +1,75 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0" style="color: #0cacdf;">Gestión de SLAs</h2>
+        <a href="{% url 'crear_sla' %}" class="btn btn-primary border-0" style="background-color: #0cacdf;">
+            <i class="bi bi-plus-circle"></i> Nuevo SLA
+        </a>
+    </div>
+
+    <!-- Tabla de SLAs -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>Nombre SLA</th>
+                            <th>Tiempo Respuesta</th>
+                            <th>Tiempo Resolución</th>
+                            <th>Activo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sla in slas %}
+                        <tr>
+                            <td>{{ sla.nombre_sla }}</td>
+                            <td>
+                                <span class="badge bg-info text-dark">
+                                    {{ sla.tiempo_respuesta }} minutos
+                                </span>
+                                <small class="text-muted">(~{{ sla.tiempo_respuesta }} horas)</small>
+                            </td>
+                            <td>
+                                <span class="badge bg-warning text-dark">
+                                    {{ sla.tiempo_resolucion }} minutos
+                                </span>
+                                <small class="text-muted">(~{{ sla.tiempo_resolucion }} horas)</small>
+                            </td>
+                            <td>
+                                {% if sla.activo %}
+                                    <span class="badge bg-success">Sí</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">No</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'configuracion_sla' sla.id %}" class="btn btn-success btn-lg w-100 text-white fw-bold"
+                                    onclick="return confirm('¿Estás seguro de que deseas aplicar este SLA a todos los tickets?');">Aplicar
+                                    </a>
+                                    <a href="{% url 'editar_sla' sla.id %}" class="btn btn-primary btn-lg w-100 text-white fw-bold">Editar
+                                    </a>
+                                    <a href="{% url 'eliminar_sla' sla.id %}" class="btn btn-danger btn-lg w-100 text-white fw-bold">Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center py-4">No hay SLAs configurados</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+/* BARRA DE NAVEGACION */
+.navbar-custom {
+    background-color: #0cacdf;
+}
+.logosf {
+    color:#ffffff
+}
+
+.navbar-custom .nav-link {
+    color: #ffffff; 
+}
+.navbar-custom .nav-link:hover {
+    color: #000000; /* Color al pasar mouse */
+}
+.about_icon {
+    height: 50px; /* Ajuste tamaño barra */
+    width: auto;
+}
+
+.titulo1 .nav-link {
+    color: #ffffff; 
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Monospace', sans-serif;    
+}
+
+/* INICIO DE SESION */
+.container .logo{
+    background-color: #0cacdf;;
+}
+.btn1{
+    background-color: #0cacdf;
+    color: #ffffff;
+}
+.label1{
+    color: #0cacdf;
+    margin-top: 10px;
+}
+
+.panel {
+    color: #0cacdf; ;
+}
+/* PANEL ADMINISTRACION */
+/* Estilos para el formulario */

@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header" style="background-color: #0cacdf; color: white;">
+                    <h2 class="mb-0">Crear Nuevo Ticket</h2>
+                </div>
+                <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-success btn-lg">Crear Ticket</button>
+                            <a href="{% url 'lista_ticket' %}" class="btn btn-success btn-lg btn-danger">Cancelar</a>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
