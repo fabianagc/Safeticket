@@ -18,18 +18,24 @@ class SLA(models.Model):
         return self.nombre_sla
 
 class TICKET(models.Model):
+    
     PRIORIDADES = (
         ('Alta', 'Alta'),
         ('Media', 'Media'),
         ('Baja', 'Baja'),
-        ('Sin asignacion' , 'Sin asignacion')
+        ('Sin asignacion' , 'Sin asignacion'),
+    )
+
+    ESTATUS = (
+        ('Sla en regla', 'Sla en regla'),
+        ('Sla vencido', 'Sla vencido'),
     )
 
     ESTADOS = (
-    ('Abierto', 'Abierto'),
-    ('En proceso', 'En proceso'),
-    ('Resuelto', 'Resuelto'),
-    ('Cerrado', 'Cerrado'),
+        ('Abierto', 'Abierto'),
+        ('En proceso', 'En proceso'),
+        ('Resuelto', 'Resuelto'),
+        ('Cerrado', 'Cerrado'),
     )
 
     id_usuario_solicitante = models.ForeignKey(User, related_name='tickets_solicitados', on_delete=models.PROTECT, blank=True)
@@ -42,10 +48,8 @@ class TICKET(models.Model):
     fecha_primera_respuesta = models.DateTimeField(null=True, blank=True)
     fecha_resolucion = models.DateTimeField(null=True, blank=True)
     sla_aplicado = models.ForeignKey(SLA, on_delete=models.SET_NULL, null=True, blank=True)
+    sla_estado = models.CharField(max_length=35, choices=ESTATUS)
 
-    def __str__(self):
-        return f"{self.titulo} - {self.prioridad}"
-    
     @property
     def resuelto_fuera_de_sla(self):
         if self.estado == 'Resuelto' and self.fecha_resolucion and self.sla_aplicado:
@@ -53,6 +57,9 @@ class TICKET(models.Model):
             return self.fecha_resolucion > limite
         return False
 
+    def __str__(self):
+        return f"{self.titulo} - {self.prioridad}"
+    
 class COMENTARIO(models.Model):
     ticket = models.ForeignKey(TICKET, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

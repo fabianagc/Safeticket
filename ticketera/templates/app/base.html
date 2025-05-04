@@ -21,26 +21,26 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'lista_ticket' %}">Dashboard</a>
-                            </li>
-        
-                            {% if user.last_name == 'Administrador'%}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'lista_sla' %}">SLA</a>
-                            </li>
-                            {% endif %}
-        
-                            {% if user.last_name == 'Administrador' %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'pagCrud' %}">Gestión usuarios</a>
-                            </li>
-                            {% endif %}
-        
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'pagLogout' %}">Cerrar sesión</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'lista_ticket' %}">Dashboard</a>
+                        </li>
+    
+                        {% if user.last_name == 'Administrador'%}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'lista_sla' %}">SLA</a>
+                        </li>
                         {% endif %}
+    
+                        {% if user.last_name == 'Administrador' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'pagCrud' %}">Gestión usuarios</a>
+                        </li>
+                        {% endif %}
+    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'pagLogout' %}">Cerrar sesión</a>
+                        </li>
+                    {% endif %}
                     </ul>
                 </div>
             </div>

@@ -6,8 +6,11 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0" style="color: #0cacdf;">Gestión de SLAs</h2>
+
         <a href="{% url 'crear_sla' %}" class="btn btn-primary border-0" style="background-color: #0cacdf;">
             <i class="bi bi-plus-circle"></i> Nuevo SLA
+        </a>
+        <a href="{% url 'tickets_vencidos' %}" class="btn btn-primary border-0">Tickets SLA vencido
         </a>
     </div>
 

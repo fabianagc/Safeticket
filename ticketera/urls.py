@@ -27,5 +27,5 @@ urlpatterns = [
     path('lista_ticket/', views.lista_ticketView.as_view(), name='lista_ticket'),
     path('CrearTicketView', views.CrearTicketView.as_view(), name="CrearTicketView"),
     path('editar_ticket/<int:pk>/', views.editar_ticketView.as_view(), name='editar_ticket'),
-    path('lista_ticketUser/', views.lista_ticketUserView.as_view(), name='lista_ticketUser'),
+    path('tickets_vencidos/', views.tickets_vencidos, name='tickets_vencidos'),
 ]
