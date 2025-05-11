@@ -163,8 +163,6 @@ def configuracion_sla(request, sla_id):
     sla.save()
 
     TICKET.objects.filter(sla_aplicado__isnull=True).update(sla_aplicado=sla)
-    
-    messages.success(request, f"El SLA '{sla.nombre_sla}' ha sido activado y aplicado a tickets existentes.")
     return redirect('lista_sla')
 
 class lista_slaView(ListView):
